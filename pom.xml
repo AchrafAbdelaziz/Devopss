@@ -103,10 +103,4 @@
 			
 		</plugins>
 	</build>
-	<distributionManagement>
-   <snapshotRepository>
-      <id>nexus-snapshots</id>
-      <url>http://192.168.56.10:8081/nexus/content/repositories/snapshots</url>
-   </snapshotRepository>
-</distributionManagement>
 </project>
