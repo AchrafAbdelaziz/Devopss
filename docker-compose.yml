@@ -19,11 +19,3 @@ services:
     - 8089:8089
    depends_on:
     - mysqldb
-    
-  angular:
-   image: achrafab/achraf_front:latest
-   container_name: angularcontainer  
-   ports: 
-    - 4200:3000
-   depends_on:
-    - achat
