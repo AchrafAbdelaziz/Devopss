@@ -1,23 +1,18 @@
-
+#docker-compose.yml
 version: "3"
 
-services: 
+services:
   mysqldb:
-    container_name: mysqldb
-    environment: 
-      MYSQL_DATABASE: db
-      MYSQL_PASSWORD: root
-      MYSQL_ROOT_PASSWORD: root
-      
-    expose:
-      - "3306"
-    image: "mysql:5.7"
-    ports: 
-      - "3306:3306"
-    restart: always
-    volumes: 
-      - "my-db:/var/lib/mysql"
-
+   container_name: mysqldb
+   ports:
+    - '3306:3306'
+   environment:
+    - MYSQL_DATABASE=1
+    - MYSQL_ALLOW_EMPTY_PASSWORD=1
+   restart: always
+   volumes:
+    - mysqldb:/var/lib/mysql:rw
+   image: 'mysql:latest'
   achatproject: 
    image: achrafab/achrafback:1.0.0
    container_name: achat
@@ -27,4 +22,5 @@ services:
    depends_on:
     - mysqldb
 volumes:
-  my-db: ~
+  mysqldb: { }
+ncs-rvcb-rhe
