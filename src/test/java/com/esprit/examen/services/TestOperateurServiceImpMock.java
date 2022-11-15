@@ -32,14 +32,14 @@ public class TestOperateurServiceImpMock {
 	@InjectMocks
 	OperateurServiceImpl osI;
 
-	Operateur o = Operateur.builder().idOperateur((long) 7).nom("chams1").prenom("balti1").password("pass1").build();
+	Operateur o = Operateur.builder().idOperateur((long) 7).nom("anis1").prenom("moalla1").password("123").build();
 
 	@Test
 	public void AddOperateur() {
 		Operateur o_add = new Operateur();
-		o_add.setNom("chams add");
-		o_add.setPrenom("chamspre add");
-		o_add.setPassword("chamspass add");
+		o_add.setNom("anis add");
+		o_add.setPrenom("anispre add");
+		o_add.setPassword("anis pass add");
 
 		Mockito.when(or.save(ArgumentMatchers.any(Operateur.class))).thenReturn(o_add);
 
@@ -76,7 +76,7 @@ public class TestOperateurServiceImpMock {
 	@Test
 	public void DeleteOperateur_ifFound() {
 		Operateur o_delete = new Operateur();
-		o_delete.setNom("chams delete");
+		o_delete.setNom("anis delete");
 		o_delete.setIdOperateur(1L);
 
 		when(or.findById(o_delete.getIdOperateur())).thenReturn(Optional.of(o_delete));
@@ -90,7 +90,7 @@ public class TestOperateurServiceImpMock {
 		try {
 			Operateur o_delete = new Operateur();
 			o_delete.setIdOperateur(2L);
-			o_delete.setNom("chxws");
+			o_delete.setNom("aniss");
 
 			when(or.findById(anyLong())).thenReturn(Optional.ofNullable(null));
 			osI.deleteOperateur(o_delete.getIdOperateur());
@@ -106,10 +106,10 @@ public class TestOperateurServiceImpMock {
 	public void EditOperateur_ifFound() {
 		Operateur o_edit = new Operateur();
 		o_edit.setIdOperateur(3L);
-		o_edit.setNom("chams edit");
+		o_edit.setNom("anis edit");
 
 		Operateur new_o_edit = new Operateur();
-		new_o_edit.setNom("new chams edit");
+		new_o_edit.setNom("new anis edit");
 
 		when(or.findById(o_edit.getIdOperateur())).thenReturn(Optional.of(o_edit));
 		o_edit = osI.updateOperateur(new_o_edit);
@@ -122,11 +122,11 @@ public class TestOperateurServiceImpMock {
 		try {
 			Operateur o_edit = new Operateur();
 			o_edit.setIdOperateur(4L);
-			o_edit.setNom("chams edit");
+			o_edit.setNom("anis edit");
 
 			Operateur new_o_edit = new Operateur();
 			new_o_edit.setIdOperateur(5L);
-			new_o_edit.setNom("new chams edit");
+			new_o_edit.setNom("new anis edit");
 
 			when(or.findById(anyLong())).thenReturn(Optional.ofNullable(null));
 			osI.updateOperateur(new_o_edit);
