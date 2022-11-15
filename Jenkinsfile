@@ -27,7 +27,7 @@ pipeline {
                 sh 'mvn sonar:sonar -Dsonar.host.url=$SONAR_URL -Dsonar.login=$SONAR_LOGIN -Dsonar.projectKey=$SONAR_KEY'
             }
         }
-       stage('Publish to Nexus') {
+      /* stage('Publish to Nexus') {
                      steps {
                          script {
                                 sh 'mvn deploy -e -DskipTests'
@@ -35,7 +35,7 @@ pipeline {
 
                      }
                  }
-                 }
+                 }*/
        stage('build docker image') {
             steps {
                 script {
