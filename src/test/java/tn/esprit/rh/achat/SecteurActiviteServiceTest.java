@@ -20,7 +20,7 @@ import static org.mockito.Mockito.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @ExtendWith(MockitoExtension.class)
-public class SecteurActiviteServiceTest {
+ class SecteurActiviteServiceTest {
 
     @Mock
     SecteurActiviteRepository secteurActiviteRepository;
