@@ -53,7 +53,6 @@ pipeline {
     }   
 }
         
-
 stage("Publish to Nexus Repository Manager") {
             steps {
                 script {
@@ -63,7 +62,7 @@ stage("Publish to Nexus Repository Manager") {
                     artifactPath = filesByGlob[0].path;
                     artifactExists = fileExists artifactPath;
                     if(artifactExists) {
-                        echo "*** File: ${artifactPath}, group: ${pom.groupId}, packaging: ${pom.packaging}, version ${pom.version}";
+                        echo "* File: ${artifactPath}, group: ${pom.groupId}, packaging: ${pom.packaging}, version ${pom.version}";
                         nexusArtifactUploader(
                             nexusVersion: NEXUS_VERSION,
                             protocol: NEXUS_PROTOCOL,
@@ -84,7 +83,7 @@ stage("Publish to Nexus Repository Manager") {
                             ]
                         );
                     } else {
-                        error "*** File: ${artifactPath}, could not be found";
+                        error "* File: ${artifactPath}, could not be found";
                     }
                 }
             }
