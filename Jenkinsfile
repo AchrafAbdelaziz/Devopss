@@ -93,7 +93,7 @@ stage("Publish to Nexus Repository Manager") {
 	      stage('Building image') {
 		    steps{
 			    withDockerRegistry([credentialsId: "docker-cred", url: ""]) {
-			    sh "docker build -t anismoalla/devops_anis:latest* ."
+			    sh "docker build -t anismoalla/devops_anis:latest ."
 			    
 		    }
 		    }
