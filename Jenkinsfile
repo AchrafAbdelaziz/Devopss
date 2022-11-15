@@ -22,11 +22,41 @@ pipeline {
                     }
                 }
        
-      stage('sonar') {
+       stage('sonar') {
             steps {
                 sh 'mvn sonar:sonar -Dsonar.host.url=$SONAR_URL -Dsonar.login=$SONAR_LOGIN -Dsonar.projectKey=$SONAR_KEY'
             }
         }
+       stage('Publish to Nexus') {
+                     steps {
+                         script {
+                                sh 'mvn deploy -e -DskipTests'
+                                echo 'Publish to Nexus'
+
+                     }
+                 }
+                 }
+       stage('build docker image') {
+            steps {
+                script {
+                    sh 'docker build -t $DOCKER_LOGIN/devops .'
+                    echo 'build docker image'
+                    }
+                    }
+             }
+       stage('Docker login') {
+                steps {
+                    sh 'docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD'
+                    echo 'Docker login'
+
+                     }
+                    }
+       stage('Pushing Docker Image') {
+                steps {
+                      sh 'docker push $DOCKER_LOGIN/devops'
+                       echo 'Pushing Docker Image'
+                       }
+                     }
 }
 
 }
