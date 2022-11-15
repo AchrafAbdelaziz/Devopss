@@ -11,6 +11,10 @@ pipeline {
                         sh 'mvn package -DskipTests'
                     }
                 }
+        stage("workdir"){
+        steps{
+                sh 'mvn pwd'
+        }
 
 }
 
