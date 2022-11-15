@@ -22,11 +22,11 @@ pipeline {
                     }
                 }
        
-       stage('sonar') {
+      /* stage('sonar') {
             steps {
                 sh 'mvn sonar:sonar -Dsonar.host.url=$SONAR_URL -Dsonar.login=$SONAR_LOGIN -Dsonar.projectKey=$SONAR_KEY'
             }
-        }
+        }*/
       /* stage('Publish to Nexus') {
                      steps {
                          script {
