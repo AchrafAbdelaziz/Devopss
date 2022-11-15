@@ -13,7 +13,7 @@ pipeline {
                 }
         stage("workdir"){
         steps{
-                sh 'mvn pwd'
+                sh 'pwd'
         }
         }
 
