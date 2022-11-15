@@ -10,9 +10,6 @@ pipeline {
                 echo 'cleaning'
             }
         }
-
-
-        }
         stage('build') {
                     steps {
                         sh 'mvn package -DskipTests'
