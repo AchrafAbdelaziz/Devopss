@@ -89,6 +89,22 @@ stage("Publish to Nexus Repository Manager") {
             }
 }
 
+	    
+	      stage('Building image') {
+		    steps{
+			    withDockerRegistry([credentialsId: "docker-cred", url: ""]) {
+			    sh "docker build -t anismoalla/devops_anis:latest* ."
+			    
+		    }
+		    }
+    }
+	        stage('Pushing image') {
+			steps{
+		withDockerRegistry([credentialsId: "docker-cred", url: ""]) {
+  		sh "docker push anismoalla/devops_anis:latest"
+	}
+			}
+		}
 	
     }   
 }
