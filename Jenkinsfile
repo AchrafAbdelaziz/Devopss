@@ -105,6 +105,10 @@ stage("Publish to Nexus Repository Manager") {
 	}
 			}
 		}
-	
+	 stage('spring and sql containers') {
+                 steps {
+                   sh 'docker-compose up&'
+		 }
+                    }
     }   
 }
