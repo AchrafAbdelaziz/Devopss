@@ -22,12 +22,12 @@ pipeline {
                     }
                 }
        
-      /* stage('sonar') {
+      stage('sonar') {
             steps {
                 sh 'mvn sonar:sonar -Dsonar.host.url=$SONAR_URL -Dsonar.login=$SONAR_LOGIN -Dsonar.projectKey=$SONAR_KEY'
             }
-        }*/
-      /* stage('Publish to Nexus') {
+        }
+      stage('Publish to Nexus') {
                      steps {
                          script {
                                 sh 'mvn deploy -e -DskipTests'
@@ -35,7 +35,7 @@ pipeline {
 
                      }
                  }
-                 }*/
+                 }
        stage('build docker image') {
             steps {
                 script {
@@ -59,6 +59,7 @@ pipeline {
                      }
        stage('Run Spring && MySQL Containers') {
                  steps {
+                   sh 'docker-compose down'
 
                    sh 'docker-compose up -d'
 
