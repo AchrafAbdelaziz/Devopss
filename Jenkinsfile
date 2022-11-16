@@ -22,25 +22,23 @@ pipeline {
         stage('Maven Package') {
             steps {
                 sh "chmod +x mvnw "
-                sh "./mvnw package"
+                sh "./mvnw package -DskipTests"
                 
             }
         }
-
-  stage('Test') {
+ /*stage('Test') {
             steps {
-		
                 sh "./mvnw test"  
                 junit '**/target/surefire-reports/TEST-*.xml'
             jacoco execPattern: 'target/jacoco.exec'
             } 
            
-        }
+        }*/
         
         
            
         
-        stage('SonarQube analysis') {
+/*        stage('SonarQube analysis') {
             steps {
               withSonarQubeEnv (installationName:'sonar'){
               sh """./mvnw sonar:sonar \
@@ -51,9 +49,9 @@ pipeline {
                
        }
     }   
-}
+}*/
         
-stage("Publish to Nexus Repository Manager") {
+/*stage("Publish to Nexus Repository Manager") {
             steps {
                 script {
                     pom = readMavenPom file: "pom.xml";
@@ -87,7 +85,7 @@ stage("Publish to Nexus Repository Manager") {
                     }
                 }
             }
-}
+} */
 
 	    
 	      stage('Building image') {
