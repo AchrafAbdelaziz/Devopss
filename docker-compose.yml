@@ -23,5 +23,3 @@ services:
       MYSQL_HOST: mysql_Devops
       MYSQL_USER: root
       MYSQL_PASSWORD: root
-volumes:
-  db:
