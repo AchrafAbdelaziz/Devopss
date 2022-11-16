@@ -26,16 +26,7 @@ pipeline {
                 
             }
         }
- /*stage('Test') {
-            steps {
-                sh "./mvnw test"  
-                junit '**/target/surefire-reports/TEST-*.xml'
-            jacoco execPattern: 'target/jacoco.exec'
-            } 
-           
-        }*/
-        
-        
+
            
         
 /*        stage('SonarQube analysis') {
