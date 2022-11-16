@@ -21,5 +21,4 @@ services:
       - 8089:8089
     environment:
       MYSQL_HOST: mysql_Devops
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: root
