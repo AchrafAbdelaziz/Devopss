@@ -3,7 +3,7 @@ version: "3"
 services:
   mysqldb:
     container_name: mysql_Devops
-    image: mysql
+    image: mysql:latest
     restart: on_failure
     volumes:
       - db:/var/lib/mysql
@@ -15,7 +15,7 @@ services:
   app:
     depends_on:
       - mysqldb
-    image: anismoalla/devops
+    image: anismoalla/devops:latest
     restart: on_failure
     ports:
       - 8089:8089
