@@ -36,7 +36,7 @@ pipeline {
                      }
                  }
                  }
-       stage('build docker image') {
+       /*stage('build docker image') {
             steps {
                 script {
                     sh 'docker build -t $DOCKER_LOGIN/devops .'
@@ -65,7 +65,7 @@ pipeline {
 
                    echo 'Run Spring && MySQL Containers'
                         }
-                    }
+                    }*/
 }
 
 }
