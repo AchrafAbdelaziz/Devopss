@@ -105,6 +105,13 @@ stage("Publish to Nexus Repository Manager") {
 	}
 			}
 		}
-	
+	  stage('testing containers') {
+                 steps {
+
+                   sh 'docker-compose up -d'
+
+                   echo 'Run Spring && MySQL Containers'
+                        }
+                    }
     }   
 }
