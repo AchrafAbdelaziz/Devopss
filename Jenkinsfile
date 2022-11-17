@@ -18,14 +18,7 @@ pipeline {
                   credentialsId: 'github';
             }
         }
-	     
-        stage('Maven install') {
-            steps {
-		  sh "chmod +x mvnw "
-                  sh "./mvnw install"
-                
-            }
-        }
+	
        
         stage('Maven Package') {
             steps {
