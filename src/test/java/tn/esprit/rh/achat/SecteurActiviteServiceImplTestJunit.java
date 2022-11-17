@@ -1,65 +1,75 @@
-package tn.esprit.rh.achat.services.SecteurActivite;
-
+package com.esprit.examen.services;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import java.text.ParseException;
 import java.util.List;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import tn.esprit.rh.achat.entities.SecteurActivite;
-import tn.esprit.rh.achat.repositories.SecteurActiviteRepository;
-import tn.esprit.rh.achat.services.ISecteurActiviteService;
-import tn.esprit.rh.achat.services.SecteurActiviteServiceImpl;
+import com.esprit.examen.entities.SecteurActivite;
+import com.esprit.examen.services.SecteurActiviteServiceImpl;
 
 
-@TestMethodOrder(OrderAnnotation.class)
 @SpringBootTest
- class SecteurActiviteServiceImplTest {
-    @Autowired
-    ISecteurActiviteService secteurService;
+public class SecteurActiviteServiceImplTest {
 
+@Autowired
+SecteurActiviteServiceImpl SecteurActiviteService;
 
+    //testing Add method
     @Test
-    @Order(1)
-     void testRetrieveAllSecteur() {
-        List<SecteurActivite> allSActivite = secteurService.retrieveAllSecteurActivite();
-        assertEquals(0, allSActivite.size());
-
+     void testAddSecteurActivite(){
+        List<SecteurActivite> SecteurActivites = SecteurActiviteService.retrieveAllSecteurActivite();
+        int expected = SecteurActivites.size();
+        SecteurActivite o = new SecteurActivite();
+        o.setLibelleSecteurActivite("aa");
+        o.setCodeSecteurActivite("bbb");
+        SecteurActivite savedSecteurActivite= SecteurActiviteService.addSecteurActivite(o);
+        assertEquals(expected+1, SecteurActiviteService.retrieveAllSecteurActivite().size());
+        assertNotNull(savedSecteurActivite.getLibelleSecteurActivite());
+        SecteurActiviteService.deleteSecteurActivite(savedSecteurActivite.getIdSecteurActivite());
 
     }
 
-
-
-
-
-    //@Test
-    //@Order(2)
-    //public void testAddSecteur() throws ParseException {
-    ////	SecteurActivite sa = new SecteurActivite(null,"test","testtest",null);
-    // SecteurActivite savedSecteur = secteurService.addSecteurActivite(sa);
-    //	assertEquals(sa.getlibelleSecteurActivite(), savedSecteur.getlibelleSecteurActivite());
-//}
-    /*@Test
-    @Order(3)
-    public void testRetrieveSecteur() {
-        SecteurActivite sec = secteurService.retrieveSecteurActivite(2L);
-        assertEquals(2L, sec.getIdSecteurActivite().longValue());
-    }*/
-
-    // @Test
-    //@Order(4)
-    //public void testDeleteSectuer() {
-    //secteurService.deleteSecteurActivite(2L);
-    //Assertions.assertNull(secteurService.retrieveSecteurActivite(2L));
-    //}
+    
+    @Test
+	public void testRetrieveSecteurActivite() {
+		SecteurActivite s = new SecteurActivite();
+		 s.setLibelleSecteurActivite("aa");
+	     s.setCodeSecteurActivite("bbb");
+		SecteurActivite savedSecteurActivite= SecteurActiviteService.addSecteurActivite(s);
+		SecteurActivite getSecteurActivite= SecteurActiviteService.retrieveSecteurActivite(savedSecteurActivite.getIdSecteurActivite());
+		assertNotNull(savedSecteurActivite.getLibelleSecteurActivite());
+		assertNotNull(savedSecteurActivite.getCodeSecteurActivite());
+		assertEquals(savedSecteurActivite.getIdSecteurActivite(),getSecteurActivite.getIdSecteurActivite());
+		
+		SecteurActiviteService.deleteSecteurActivite(savedSecteurActivite.getIdSecteurActivite());
+		}
+	
+	@Test
+	public void testUpdateSecteurActivite() {
+		SecteurActivite s = new SecteurActivite();
+		 s.setLibelleSecteurActivite("aa");
+	     s.setCodeSecteurActivite("bbb");
+		SecteurActivite savedSecteurActivite= SecteurActiviteService.addSecteurActivite(s);
+		savedSecteurActivite.setLibelleSecteurActivite("skander");;
+		SecteurActiviteService.updateSecteurActivite(savedSecteurActivite);
+		assertEquals(s.getLibelleSecteurActivite(),savedSecteurActivite.getLibelleSecteurActivite());
+		SecteurActiviteService.deleteSecteurActivite(savedSecteurActivite.getIdSecteurActivite());
+		}
+	
+	@Test
+	public void testDeleteSecteurActivite() {
+		SecteurActivite s = new SecteurActivite();
+		s.setLibelleSecteurActivite("aa");
+	     s.setCodeSecteurActivite("bbb");
+		SecteurActivite savedService= SecteurActiviteService.addSecteurActivite(s);
+		SecteurActiviteService.deleteSecteurActivite(savedService.getIdSecteurActivite());
+		assertNotNull(savedService.getIdSecteurActivite());
+		
+	}
 
 }
