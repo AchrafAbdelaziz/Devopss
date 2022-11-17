@@ -7,9 +7,6 @@ pipeline {
         DOCKER_LOGIN = 'wissemellafi'
         DOCKER_PASSWORD = 'abcd1957wissem'
         }
-
-
-
     stages {
         stage('clean') {
             steps {
@@ -31,8 +28,6 @@ pipeline {
                      steps {
                          script {
                                 sh 'mvn deploy -e -DskipTests'
-                                echo 'Publish to Nexus'
-
                      }
                  }
                  }
@@ -40,32 +35,24 @@ pipeline {
             steps {
                 script {
                     sh 'docker build -t $DOCKER_LOGIN/devops .'
-                    echo 'build docker image'
                     }
                     }
              }
        stage('Docker login') {
                 steps {
                     sh 'docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD'
-                    echo 'Docker login'
-
                      }
                     }
        stage('Pushing Docker Image') {
                 steps {
                       sh 'docker push $DOCKER_LOGIN/devops'
-                       echo 'Pushing Docker Image'
                        }
                      }
        stage('Run Spring && MySQL Containers') {
                  steps {
                    sh 'docker-compose down'
-
                    sh 'docker-compose up -d'
-
-                   echo 'Run Spring && MySQL Containers'
                         }
                     }
 }
-
 }
