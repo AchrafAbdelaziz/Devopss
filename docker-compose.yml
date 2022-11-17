@@ -2,7 +2,7 @@ version: "3"
 
 services:
   mysqldb:
-    container_name: mysqlCICD
+    container_name: database
     image: mysql
     restart: always
     volumes:
