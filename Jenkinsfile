@@ -19,6 +19,11 @@ pipeline {
             }
         }
         
+	    stage('maven install') {
+            steps {
+	     sh "./mvnw install"
+	    }
+        }
         stage('Maven Package') {
             steps {
                 sh "chmod +x mvnw "
