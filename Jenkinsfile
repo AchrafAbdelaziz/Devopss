@@ -39,6 +39,7 @@ pipeline {
        stage('build docker image') {
             steps {
                 script {
+                    sh 'sudo chmod 666 /var/run/docker.sock'
                     sh 'docker build -t $DOCKER_LOGIN/devops .'
                     }
                     }
