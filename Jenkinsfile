@@ -18,6 +18,13 @@ pipeline {
                   credentialsId: 'github';
             }
         }
+	     
+        stage('Maven install') {
+            steps {
+                  sh "./mvnw install"
+                
+            }
+        }
        
         stage('Maven Package') {
             steps {
