@@ -22,7 +22,7 @@ pipeline {
         stage('Maven install') {
             steps {
 		  sh "chmod +x mvnw "
-                  sh "./mvnw clean"
+                  sh "./mvnw install"
                 
             }
         }
