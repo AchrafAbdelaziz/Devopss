@@ -3,7 +3,6 @@ version: "3"
 
 services:
   mysqldb:
-   container_name: mysqldb
    ports:
     - '3306:3306'
    environment:
@@ -15,7 +14,6 @@ services:
    image: 'mysql:latest'
   achatproject: 
    image: achrafab/achrafback:1.0.0
-   container_name: achat
    restart: on-failure
    ports: 
     - 8089:8089
